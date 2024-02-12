@@ -33,14 +33,14 @@ body {
     height: 500px;
 }
 
-main .date-input {
+.container .date-input {
     height: 40%;
     display: flex;
     align-items: center;
     position: relative;
 }
 
-main .date-input::after {
+.container .date-input::after {
     content: '';
     position: absolute;
     top: 100%;
@@ -50,43 +50,85 @@ main .date-input::after {
     background-color: var(--Light-grey);
 }
 
-main .date-input form {
+.container .date-input form {
     width: 80%;
     margin-left: 5%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap:5px;
+    gap: 5px;
 }
 
-main form .input-container {
+.container form .input-container {
     display: flex;
     flex-direction: column;
 }
 
-main form .input-container label {
+.container form .input-container label {
     color: var(--Smokey-grey);
     letter-spacing: 3px;
 }
 
-main form .input-container input {
+.container .input-container input {
     border: 1px solid var(--Light-grey);
     width: 80px;
     height: 30px;
 }
-.arrow-icon{
+
+.arrow-icon {
     margin-left: 3%;
     margin-top: 30%;
     border-radius: 50%;
     padding: 10px;
     background-color: var(--Purple);
 }
+
+.results {
+    margin-left: 10%;
+    padding: 0 20px;
+}
+
+.result-container {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.result-container .number {
+    color: var(--Purple);
+    font-size: 4.5rem;
+    font-style: italic;
+}
+
+.result-container .unit {
+    font-style: italic;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
 @media (max-width:650px) {
-   .arrow-icon{
-     padding: 2%;
-     position: absolute;
-     top:25%;
-     left: 30%;
-     z-index: 1;
-   }
+    .arrow-icon {
+        padding: 2%;
+        position: absolute;
+        top: 25%;
+        left: 30%;
+        z-index: 1;
+    }
+
+    .results {
+       margin-left: 0;
+       margin-top: 20%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+
+    .result-container .number {
+        font-size: 3em;
+    }
+
+    .result-container .unit {
+        font-size: 2em;
+    }
 }

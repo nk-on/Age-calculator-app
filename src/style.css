@@ -83,6 +83,7 @@ main form .input-container input {
 }
 @media (max-width:650px) {
    .arrow-icon{
+     padding: 2%;
      position: absolute;
      top:25%;
      left: 30%;

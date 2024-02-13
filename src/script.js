@@ -17,23 +17,15 @@ const monthContainer = document.querySelector("[data-number=Month]");
 const dayContainer = document.querySelector("[data-number=Day]");
 const submitIcon = document.querySelector(".submit-icon");
 function calculateAge(){
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
-    const currentDay = getDayOfYear(new Date());
-    const year = currentYear - yearInput.value;
-    displayAge(year,currentMonth,currentDay);                                                                                                                        
+    const currentMonth = (new Date().getMonth() + 1)
+    const yearsPassed = new Date().getFullYear() - yearInput.value;
+    const monthsPassed = ((monthInput.value - currentMonth) + 12*yearsPassed)%12;
+    const daysPassed = new Date().getDate();
+    displayAge(yearsPassed,monthsPassed,daysPassed);                                                                                                                        
 };
 function displayAge(year,month,day){
     yearContainer.textContent = year;
     monthContainer.textContent = month;
     dayContainer.textContent = day;    
 }
-function getDayOfYear(date) {
-    const start = new Date(date.getFullYear(), 0, 0);
-    const diff = (date - start) + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000);
-    const oneDay = 1000 * 60 * 60 * 24;
-    const dayOfYear = Math.floor(diff / oneDay);
-    return dayOfYear;
-};
-
 submitIcon.addEventListener("click",calculateAge)

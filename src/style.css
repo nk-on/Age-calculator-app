@@ -75,12 +75,13 @@ body {
     height: 30px;
 }
 
-.arrow-icon {
+.submit-icon {
     margin-left: 3%;
     margin-top: 30%;
     border-radius: 50%;
     padding: 10px;
     background-color: var(--Purple);
+    cursor: pointer;
 }
 
 .results {

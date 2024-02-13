@@ -11,3 +11,4 @@ const dayInput = document.querySelector("#Day-input");
 const yearContainer = document.querySelector("[Year]");
 const monthContainer = document.querySelector("[Month]");
 const dayContainer = document.querySelector("[Day]");
+const submitIcon = document.querySelector(".submitIcon");

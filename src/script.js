@@ -22,6 +22,10 @@ function calculateAge() {
     let yearsDifference = currentYear - birthYear;
     let monthsDifference = currentMonth - birthMonth;
     let daysDifference = birthDay - currentDay;
+    if (monthsDifference < 0) {
+        yearsDifference--;
+        monthsDifference += 12;
+      };
     displayAge(yearsDifference, monthsDifference, daysDifference);
 };
 function displayAge(year, month, day) {

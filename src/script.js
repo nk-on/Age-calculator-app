@@ -25,7 +25,15 @@ function calculateAge() {
     if (monthsDifference < 0) {
         yearsDifference--;
         monthsDifference += 12;
-      };
+    };
+    if(daysDifference < 0){
+        monthsDifference--;
+        if((currentMonth -1)%2 === 0){
+            daysDifference+=30;
+        }else if((currentMonth -1)%2 === 1){
+            daysDifference+=31;
+        }
+    }
     displayAge(yearsDifference, monthsDifference, daysDifference);
 };
 function displayAge(year, month, day) {

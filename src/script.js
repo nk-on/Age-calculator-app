@@ -12,19 +12,21 @@ const yearContainer = document.querySelector("[data-number=Year]");
 const monthContainer = document.querySelector("[data-number=Month]");
 const dayContainer = document.querySelector("[data-number=Day]");
 const submitIcon = document.querySelector(".submit-icon");
-function calculateAge(){
+function calculateAge() {
+    const birthYear = Number(yearInput.value);
+    const birthMonth = Number(monthInput.value);
+    const birthDay = Number(dayInput.value);
+    const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
-    let yearsPassed = new Date().getFullYear() - yearInput.value;
-    const monthsPassed = 12 - ((monthInput.value - currentMonth) + 12*yearsPassed)%12;
-    const daysPassed = new Date().getDate();
-    if(monthInput.value > currentMonth){
-        yearsPassed--;
-    };
-    displayAge(yearsPassed,monthsPassed,daysPassed);                                                                                                                        
+    const currentDay = new Date().getDate();
+    let yearsDifference = currentYear - birthYear;
+    let monthsDifference = currentMonth - birthMonth;
+    let daysDifference = birthDay - currentDay;
+    displayAge(yearsDifference, monthsDifference, daysDifference);
 };
-function displayAge(year,month,day){
+function displayAge(year, month, day) {
     yearContainer.textContent = year;
     monthContainer.textContent = month;
-    dayContainer.textContent = day;    
+    dayContainer.textContent = day;
 }
-submitIcon.addEventListener("click",calculateAge)
+submitIcon.addEventListener("click", calculateAge)

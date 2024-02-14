@@ -21,20 +21,40 @@ function calculateAge() {
     const currentDay = new Date().getDate();
     let yearsDifference = currentYear - birthYear;
     let monthsDifference = currentMonth - birthMonth;
-    let daysDifference = birthDay - currentDay;
+    let daysDifference = Math.abs(birthDay - currentDay);
+    if(monthsDifference === 0){
+        displayAge(yearsDifference, monthsDifference, daysDifference);
+        return;
+    };
     if (monthsDifference < 0) {
         yearsDifference--;
         monthsDifference += 12;
     };
-    if(daysDifference < 0){
+    if(daysDifference > 0){
         monthsDifference--;
-        if((currentMonth -1)%2 === 0){
-            daysDifference+=30;
-        }else if((currentMonth -1)%2 === 1){
-            daysDifference+=31;
-        }
-    }
+        const previousMonth = (currentMonth - 1) === 0 ? 12:currentMonth-1;
+        if ((previousMonth) === 2) {
+            const leapYar = isLeapYear(birthDay);
+            leapYar ? (29 - birthDay)+currentDay : (28 - birthDay)+currentDay;
+        } else if ((previousMonth) % 2 === 0) {
+            daysDifference = (30 - birthDay)+currentDay;
+        } else if ((previousMonth) % 2 === 1) {
+            daysDifference = (31 - birthDay)+currentDay;
+        };
+    };
     displayAge(yearsDifference, monthsDifference, daysDifference);
+};
+function isLeapYear(year) {
+    if (year % 4 !== 0) {
+        return false;
+    };
+    if (year % 4 === 0 && year % 100 !== 0) {
+        return true;
+    };
+    if ((year % 4 === 0 && year % 100 === 0) && year % 400 === 0) {
+        return true;
+    };
+    return false;
 };
 function displayAge(year, month, day) {
     yearContainer.textContent = year;

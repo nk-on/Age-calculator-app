@@ -30,6 +30,10 @@ function calculateAge() {
         yearsDifference--;
         monthsDifference += 12;
     };
+    if(daysDifference >= 0){
+        displayAge(yearsDifference, monthsDifference, daysDifference);
+        return;
+    }
     if(daysDifference > 0){
         monthsDifference--;
         const previousMonth = (currentMonth - 1) === 0 ? 12:currentMonth-1;
@@ -61,4 +65,4 @@ function displayAge(year, month, day) {
     monthContainer.textContent = month;
     dayContainer.textContent = day;
 }
-submitIcon.addEventListener("click", calculateAge)
+submitIcon.addEventListener("click", calculateAge);

@@ -21,7 +21,7 @@ function calculateAge() {
     const currentDay = new Date().getDate();
     let yearsDifference = currentYear - birthYear;
     let monthsDifference = currentMonth - birthMonth;
-    let daysDifference = Math.abs(birthDay - currentDay);
+    let daysDifference = birthDay - currentDay;
     if(monthsDifference === 0){
         displayAge(yearsDifference, monthsDifference, daysDifference);
         return;
@@ -30,7 +30,8 @@ function calculateAge() {
         yearsDifference--;
         monthsDifference += 12;
     };
-    if(daysDifference >= 0){
+    if(daysDifference <=  0){
+        daysDifference = Math.abs(daysDifference);
         displayAge(yearsDifference, monthsDifference, daysDifference);
         return;
     }

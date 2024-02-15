@@ -74,7 +74,9 @@ body {
     width: 80px;
     height: 30px;
 }
-
+.container .input-container .error-state{
+    color:var(--Light-red);
+}
 .submit-icon {
     margin-left: 3%;
     margin-top: 30%;

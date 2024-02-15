@@ -19,6 +19,10 @@ function calculateAge() {
     const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
+    const dateIsValid = validateData(birthYear,birthYear,birthDay);
+    if(!dateIsValid){
+        return;
+    };
     let yearsDifference = currentYear - birthYear;
     let monthsDifference = currentMonth - birthMonth;
     let daysDifference = birthDay - currentDay;
@@ -48,6 +52,29 @@ function calculateAge() {
         };
     };
     displayAge(yearsDifference, monthsDifference, daysDifference);
+};
+function validateData(Year,Month,Day){
+    const currentYear = new Date().getFullYear();
+    const currentMonth = (new Date().getMonth() + 1);
+    const currentDay = new Date().getDate();
+    const inputDateIsInFuture = Year > currentYear || Month > currentMonth || Day > currentDay;
+    let isValid  = true;
+    if(inputDateIsInFuture){
+        const label = yearInput.previousElementSibling;
+        label.classList.add("error-state");
+        isValid = false;
+    };
+    if(Month < 1 || Month > 12){
+        const label = monthInput.previousElementSibling;
+        label.classList.add("error-state");
+        isValid = false;
+    };
+    if(Day < 1 || Day > 31){
+        const label = dayInput.previousElementSibling;
+        label.classList.add("error-state");
+        isValid = false;
+    };
+    return isValid;
 };
 function isLeapYear(year) {
     if (year % 4 !== 0) {

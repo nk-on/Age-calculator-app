@@ -19,14 +19,14 @@ function calculateAge() {
     const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
-    const dateIsValid = validateData(birthYear,birthYear,birthDay);
-    if(!dateIsValid){
+    const dateIsValid = validateData(birthYear, birthYear, birthDay);
+    if (!dateIsValid) {
         return;
     };
     let yearsDifference = currentYear - birthYear;
     let monthsDifference = currentMonth - birthMonth;
     let daysDifference = birthDay - currentDay;
-    if(monthsDifference === 0){
+    if (monthsDifference === 0) {
         displayAge(yearsDifference, monthsDifference, daysDifference);
         return;
     };
@@ -34,42 +34,50 @@ function calculateAge() {
         yearsDifference--;
         monthsDifference += 12;
     };
-    if(daysDifference <=  0){
+    if (daysDifference <= 0) {
         daysDifference = Math.abs(daysDifference);
         displayAge(yearsDifference, monthsDifference, daysDifference);
         return;
     }
-    if(daysDifference > 0){
+    if (daysDifference > 0) {
         monthsDifference--;
-        const previousMonth = (currentMonth - 1) === 0 ? 12:currentMonth-1;
+        const previousMonth = (currentMonth - 1) === 0 ? 12 : currentMonth - 1;
         if ((previousMonth) === 2) {
             const leapYar = isLeapYear(birthDay);
-            leapYar ? (29 - birthDay)+currentDay : (28 - birthDay)+currentDay;
+            leapYar ? (29 - birthDay) + currentDay : (28 - birthDay) + currentDay;
         } else if ((previousMonth) % 2 === 0) {
-            daysDifference = (30 - birthDay)+currentDay;
+            daysDifference = (30 - birthDay) + currentDay;
         } else if ((previousMonth) % 2 === 1) {
-            daysDifference = (31 - birthDay)+currentDay;
+            daysDifference = (31 - birthDay) + currentDay;
         };
     };
     displayAge(yearsDifference, monthsDifference, daysDifference);
 };
-function validateData(Year,Month,Day){
+function validateData(Year, Month, Day) {
     const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
     const inputDateIsInFuture = Year > currentYear || Month > currentMonth || Day > currentDay;
-    let isValid  = true;
-    if(inputDateIsInFuture){
-        const label = yearInput.previousElementSibling;
-        label.classList.add("error-state");
+    let isValid = true;
+    if (inputDateIsInFuture) {
+        if (Year > currentYear) {
+            const label = yearInput.previousElementSibling;
+            label.classList.add("error-state");
+        } else if (Month > currentMonth) {
+            const label = monthInput.previousElementSibling;
+            label.classList.add("error-state");
+        }else{
+            const label = monthInput.previousElementSibling;
+            label.classList.add("error-state");
+        }
         isValid = false;
     };
-    if(Month < 1 || Month > 12){
+    if (Month < 1 || Month > 12) {
         const label = monthInput.previousElementSibling;
         label.classList.add("error-state");
         isValid = false;
     };
-    if(Day < 1 || Day > 31){
+    if (Day < 1 || Day > 31) {
         const label = dayInput.previousElementSibling;
         label.classList.add("error-state");
         isValid = false;

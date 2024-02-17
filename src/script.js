@@ -1,10 +1,3 @@
-/*View an age in years, months, and days after submitting a valid date through the form
- 
-Any field is empty when the form is submitted
-The day number is not between 1-31
-The month number is not between 1-12
-The date is in the future
-The date is invalid, e.g. 31/04/1991 (there are 30 days in April) */
 const yearInput = document.querySelector("#Year-input");
 const monthInput = document.querySelector("#Month-input");
 const dayInput = document.querySelector("#Day-input");
@@ -27,38 +20,39 @@ function calculateAge() {
     const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
-    errorLabels.forEach((label)=>{
+    errorLabels.forEach((label) => {
         label.classList.remove("error-state");
     });
-    errorMessages.forEach((label)=>{
+    errorMessages.forEach((label) => {
         label.classList.remove("error-state")
     });
+    //Validating if user entered correct date
     const dateIsValid = validateData(birthYear, birthMonth, birthDay);
     if (!dateIsValid) {
         return;
     };
     let yearsDifference = currentYear - birthYear;
     let monthsDifference = currentMonth - birthMonth;
-    let daysDifference = birthDay - currentDay;
-    if (monthsDifference === 0) {
-        displayAge(yearsDifference, monthsDifference, daysDifference);
-        return;
-    };
+    let daysDifference = currentDay - birthDay;
+    //Adjusting months difference if entered month is ahead of current month
     if (monthsDifference < 0) {
         yearsDifference--;
         monthsDifference += 12;
     };
-    if (daysDifference <= 0) {
+    //Handeling Case when entered month and current month are same or currentDay is ahead of entered day
+    if (monthsDifference === 0 || daysDifference >= 0) {
         daysDifference = Math.abs(daysDifference);
         displayAge(yearsDifference, monthsDifference, daysDifference);
         return;
-    }
-    if (daysDifference > 0) {
+    };
+    //Calculating day difference if current day is behind entered day
+    if (daysDifference < 0) {
         monthsDifference--;
         const previousMonth = (currentMonth - 1) === 0 ? 12 : currentMonth - 1;
+        //Handeling case if month is February
         if ((previousMonth) === 2) {
             const leapYar = isLeapYear(birthDay);
-            leapYar ? (29 - birthDay) + currentDay : (28 - birthDay) + currentDay;
+            daysDifference = leapYar ? (29 - birthDay) + currentDay : (28 - birthDay) + currentDay;
         } else if ((previousMonth) % 2 === 0) {
             daysDifference = (30 - birthDay) + currentDay;
         } else if ((previousMonth) % 2 === 1) {
@@ -72,43 +66,38 @@ function validateData(Year, Month, Day) {
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
     let isValid = true;
-    if(currentYear === Year){
-        if(Month > currentMonth){
-            monthErrorMessage.classList.add("error-state");
-            monthLabel.classList.add("error-state");
+    //Handeling case if Current year is same as entered year but month or day is in future
+    if (currentYear === Year) {
+        if (Month > currentMonth) {
+            addErrorState(monthLabel,monthErrorMessage);
             isValid = false;
         };
-        if(Day > currentDay){
-            dayErrorMessage.classList.add("error-state");
-            dayLabel.classList.add("error-state");
+        if (Day > currentDay) {
+            addErrorState(dayLabel,dayErrorMessage);
             isValid = false;
-        }
+        };
     }
+    //Handeling case when date is in future
     if (Year > currentYear) {
-        yearErrorMessage.classList.add("error-state")
-        yearLabel.classList.add("error-state");
+        addErrorState(yearLabel,yearErrorMessage);
         isValid = false;
     };
     if (Month < 1 || Month > 12) {
-        monthErrorMessage.classList.add("error-state");
-        monthLabel.classList.add("error-state");
+        addErrorState(monthLabel,monthErrorMessage);
         isValid = false;
     };
     if (Day < 1 || Day > 31) {
-        dayErrorMessage.classList.add("error-state");
-        dayLabel.classList.add("error-state");
+        addErrorState(dayLabel,dayErrorMessage);
         isValid = false;
     };
     return isValid;
 };
+function addErrorState(unitLabel,errorMessage){
+    unitLabel.classList.add("error-state");
+    errorMessage.classList.add("error-state")
+};
 function isLeapYear(year) {
-    if (year % 4 !== 0) {
-        return false;
-    };
-    if (year % 4 === 0 && year % 100 !== 0) {
-        return true;
-    };
-    if ((year % 4 === 0 && year % 100 === 0) && year % 400 === 0) {
+    if(((year % 4 === 0 && year % 100 === 0) && year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0) ){
         return true;
     };
     return false;
@@ -117,5 +106,5 @@ function displayAge(year, month, day) {
     yearContainer.textContent = year;
     monthContainer.textContent = month;
     dayContainer.textContent = day;
-}
+};
 submitIcon.addEventListener("click", calculateAge);

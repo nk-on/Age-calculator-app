@@ -14,33 +14,36 @@
         <section class="date-input">
             <form>
                 <div class="input-container">
-                    <label for="Day-input">Day</label>
+                    <label for="Day-input" id = "Day-label" class = "error-label">Day</label>
                     <input type="number" name="Day-input" id="Day-input">
+                    <label for="Day-Input" id = "Day-error-message" class = "error-message">Must be valid Day</label>
                 </div>
                 <div class="input-container">
-                    <label for="Month-input">Month</label>
+                    <label for="Month-input" id = "Month-label" class = "error-label">Month</label>
                     <input type="number" name="Month-input" id="Month-input">
+                    <label for="Day-Input" id = "Month-error-message" class = "error-message">Must be valid month</label>
                 </div>
                 <div class="input-container">
-                    <label for="Year">Year</label>
+                    <label for="Year" id = "Year-label" class = "error-label">Year</label>
                     <input type="number" name="Year-input" id="Year-input">
+                    <label for="Day-Input" id = "Year-error-message" class = "error-message">Must be valid year</label>
                 </div>
             </form>
-            <div class="arrow-icon">
-                <img src="assets/icon-arrow.svg" alt="arrow-icon">
+            <div class="submit-icon">
+                <img src="assets/icon-arrow.svg" alt="submit-icon">
             </div>
         </section>
         <section class="results">
             <div class="result-container">
-                <h1 class="number">38</h1>
+                <h1 class="number" data-number="Year">--</h1>
                 <p class="unit">Years</p>
             </div>
             <div class="result-container">
-                <h1 class="number">11</h1>
+                <h1 class="number" data-number="Month">--</h1>
                 <p class="unit">Months</p>
             </div>
             <div class="result-container">
-                <h1 class="number">10</h1>
+                <h1 class="number" data-number="Day">--</h1>
                 <p class="unit"> Days</p>
             </div>
         </section>

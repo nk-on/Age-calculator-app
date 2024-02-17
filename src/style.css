@@ -74,9 +74,19 @@ body {
     width: 80px;
     height: 30px;
 }
-.container .input-container .error-state{
-    color:var(--Light-red);
+
+.container .input-container .error-state {
+    display: block;
+    color: var(--Light-red);
 }
+
+.error-message{
+    display: none;
+    position: absolute;
+    font-size: 0.7em;
+    top:65%;
+}
+
 .submit-icon {
     margin-left: 3%;
     margin-top: 30%;
@@ -119,12 +129,12 @@ body {
     }
 
     .results {
-       margin-left: 0;
-       margin-top: 20%;
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
+        margin-left: 0;
+        margin-top: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .result-container .number {

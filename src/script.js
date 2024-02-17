@@ -7,7 +7,15 @@ The date is in the future
 The date is invalid, e.g. 31/04/1991 (there are 30 days in April) */
 const yearInput = document.querySelector("#Year-input");
 const monthInput = document.querySelector("#Month-input");
-const dayInput = document.querySelector("#Day-input");
+const dayInput = document.querySelector("#Day-label");
+const yearLabel = document.querySelector("#Year-label");
+const monthLabel = document.querySelector("#Month-label");
+const dayLabel = document.querySelector('#Day-label');
+const yearErrorMessage = document.querySelector('#Year-error-message');
+const monthErrorMessage = document.querySelector('#Month-error-message');
+const dayErrorMessage = document.querySelector('#Day-error-message');
+const errorLabels = document.querySelectorAll(".error-label");
+const errorMessages = document.querySelectorAll(".error-message");
 const yearContainer = document.querySelector("[data-number=Year]");
 const monthContainer = document.querySelector("[data-number=Month]");
 const dayContainer = document.querySelector("[data-number=Day]");
@@ -19,7 +27,13 @@ function calculateAge() {
     const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
-    const dateIsValid = validateData(birthYear, birthYear, birthDay);
+    errorLabels.forEach((label)=>{
+        label.classList.remove("error-state");
+    });
+    errorMessages.forEach((label)=>{
+        label.classList.remove("error-state")
+    });
+    const dateIsValid = validateData(birthYear, birthMonth, birthDay);
     if (!dateIsValid) {
         return;
     };
@@ -57,29 +71,32 @@ function validateData(Year, Month, Day) {
     const currentYear = new Date().getFullYear();
     const currentMonth = (new Date().getMonth() + 1);
     const currentDay = new Date().getDate();
-    const inputDateIsInFuture = Year > currentYear || Month > currentMonth || Day > currentDay;
     let isValid = true;
-    if (inputDateIsInFuture) {
-        if (Year > currentYear) {
-            const label = yearInput.previousElementSibling;
-            label.classList.add("error-state");
-        } else if (Month > currentMonth) {
-            const label = monthInput.previousElementSibling;
-            label.classList.add("error-state");
-        }else{
-            const label = monthInput.previousElementSibling;
-            label.classList.add("error-state");
+    if(currentYear === Year){
+        if(Month > currentMonth){
+            monthErrorMessage.classList.add("error-state");
+            monthLabel.classList.add("error-state");
+            isValid = false;
+        };
+        if(Day > currentDay){
+            dayErrorMessage.classList.add("error-state");
+            dayLabel.classList.add("error-state");
+            isValid = false;
         }
+    }
+    if (Year > currentYear) {
+        yearErrorMessage.classList.add("error-state")
+        yearLabel.classList.add("error-state");
         isValid = false;
     };
     if (Month < 1 || Month > 12) {
-        const label = monthInput.previousElementSibling;
-        label.classList.add("error-state");
+        monthErrorMessage.classList.add("error-state");
+        monthLabel.classList.add("error-state");
         isValid = false;
     };
     if (Day < 1 || Day > 31) {
-        const label = dayInput.previousElementSibling;
-        label.classList.add("error-state");
+        dayErrorMessage.classList.add("error-state");
+        dayLabel.classList.add("error-state");
         isValid = false;
     };
     return isValid;

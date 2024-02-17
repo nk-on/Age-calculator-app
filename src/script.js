@@ -7,7 +7,7 @@ The date is in the future
 The date is invalid, e.g. 31/04/1991 (there are 30 days in April) */
 const yearInput = document.querySelector("#Year-input");
 const monthInput = document.querySelector("#Month-input");
-const dayInput = document.querySelector("#Day-label");
+const dayInput = document.querySelector("#Day-input");
 const yearLabel = document.querySelector("#Year-label");
 const monthLabel = document.querySelector("#Month-label");
 const dayLabel = document.querySelector('#Day-label');

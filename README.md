@@ -10,7 +10,7 @@ The Age Calculator Web App is a user-friendly tool designed to calculate a perso
 
 ### 2. Dynamic Age Calculation
 - Calculates the user's age dynamically based on the provided birth year, month, and day.
-- Utilizes JavaScript to perform precise calculations and display the age in years, months, and days in real-time.
+- Utilizes JavaScript to perform precise calculations and display the age in years, months, and days.
 
 ### 3. Responsive Design
 - Incorporates responsive design principles using CSS to ensure optimal viewing and usability across various devices and screen sizes.
@@ -24,7 +24,7 @@ The Age Calculator Web App is a user-friendly tool designed to calculate a perso
 ## How to Use
 1. Input the birth year, month, and day in the designated fields.
 2. Ensure the entered data is accurate and valid, following the provided validation guidelines.
-3. Upon entering valid data, the application will automatically calculate and display the user's age in years, months, and days.
+3. Upon entering valid data, the application will  calculate and display the user's age in years, months, and days when user clicks on arrow button.
 4. Users can easily view their age information and make adjustments as needed.
  
 ## Conclusion
